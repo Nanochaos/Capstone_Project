@@ -17,13 +17,13 @@ class Heatmap(QObject):
         self.source = source
         self.im0s = self.object_main.DataTransfer.im0s
         self.webcam = webcam
-        self.qim = ''
         self.object_main_display = None
         self.multithreading = multithreading
         self.timer = QTimer()
         self.data = {}
 
-        self.object_main.ui.reloadBtn.clicked.connect(self.display_heatmap)
+        self.object_main.ui.reloadBtn.clicked.connect(lambda: self.reload_display_heatmap(
+            self.object_main.DataTransfer.display))
 
         color_map_raw = [[113, 0, 0], [114, 0, 0], [115, 0, 0], [116, 0, 0], [117, 0, 0], [118, 0, 0], [119, 0, 0],
                          [120, 0, 0], [121, 0, 0], [122, 0, 0], [123, 0, 0], [123, 0, 0], [124, 0, 0], [125, 0, 0],
@@ -75,7 +75,6 @@ class Heatmap(QObject):
         self.source = ''
         self.im0s = self.object_main.DataTransfer.im0s
         self.webcam = False
-        self.qim = ''
         self.object_main_display = None
 
         self.timer = QTimer()
@@ -209,14 +208,15 @@ class Heatmap(QObject):
         display = display_image
 
         if self.object_main.ui.overlapCheckBox.isChecked():
-            self.qim = QImage(display.data, display.shape[1], display.shape[0], display.shape[1] * display.shape[2],
-                              QImage.Format_RGB888)
+            qim = QImage(display.data, display.shape[1], display.shape[0], display.shape[1] * display.shape[2],
+                         QImage.Format_RGB888)
+            self.object_main.DataTransfer.display = display
         else:
-            self.qim = QImage(display_hp.data, display_hp.shape[1], display_hp.shape[0],
-                              display_hp.shape[1] * display_hp.shape[2], QImage.Format_RGB888)
+            qim = QImage(display_hp.data, display_hp.shape[1], display_hp.shape[0],
+                         display_hp.shape[1] * display_hp.shape[2], QImage.Format_RGB888)
+            self.object_main.DataTransfer.display = display_hp
 
-        self.object_main.DataTransfer.qim = self.qim
-        self.display_heatmap()
+        self.display_heatmap(qim)
 
     def distance_camera_frames(self):
         if len(self.object_main.DataTransfer.frame_data) <= 30:
@@ -230,8 +230,12 @@ class Heatmap(QObject):
         self.object_main.fps = self.object_main.DataTransfer.camera_fps
         self.object_main.change_text_time(self.object_main.DataTransfer.camera_frame, self.object_main.ui.totalTime)
 
-    def display_heatmap(self):
+    def reload_display_heatmap(self, display):
+        qim = QImage(display.data, display.shape[1], display.shape[0], display.shape[1] * display.shape[2],
+                     QImage.Format_RGB888)
+        self.display_heatmap(qim)
+
+    def display_heatmap(self, qim):
         if self.object_main_display is not None:
             cv2.waitKey(1)
-            self.object_main_display.setPixmap(QPixmap(self.object_main.DataTransfer.qim.scaled(
-                self.object_main_display.size(), Qt.KeepAspectRatio)))
+            self.object_main_display.setPixmap(QPixmap(qim.scaled(self.object_main_display.size(), Qt.KeepAspectRatio)))

@@ -331,7 +331,7 @@ class DataTransfer:
         self.frame_data = []
         self.prev_frame = 0
         self.average_ms = 1
-        self.qim = ''
+        self.display = ''
 
     def detection_data(self, im0s, det, save_dir, p, video_state, webcam, frame):
         self.im0s = im0s
@@ -353,8 +353,8 @@ class DataTransfer:
     def camera_heatmap(self, average_ms):
         self.average_ms = average_ms
 
-    def heatmap_dataset(self, qim):
-        self.qim = qim
+    def heatmap_dataset(self, display):
+        self.display = display
 
 
 if __name__ == "__main__":
