@@ -1,0 +1,131 @@
+{
+        "QMainWindow":[
+                {
+                        "tittle":"Thermograffi",
+                        "icon":"icons/battery.svg",
+                        "frameless": true,
+                        "transluscentBg": true,
+                        "sizeGrip": "sizeGrip",
+                        "navigation":[
+                                {
+                                        "minimize":"minimizeBtn",
+                                        "close": "closeBtn",
+                                        "restore":[
+                                                {
+                                                        "buttonName": "maximizeBtn",
+                                                        "normalIcon": "icons/maximize.svg",
+                                                        "maximizedIcon": "icons/minimize.svg"
+                                                }
+                                        ],
+                                        "moveWindow": "headerContainer",
+                                        "tittleBar": "headerContainer"
+                                }
+                        ]
+                }
+        ],
+        "QCustomSlideMenu": [{
+                        "name": "leftMenuContainer",
+                        "defaultSize": [{
+                                "width": 50,
+                                "height": "parent"
+                        }],
+                        "collapsedSize": [{
+                                "width": 50,
+                                "height": "parent"
+                        }],
+                        "expandedSize": [{
+                                "width": 150,
+                                "height": "parent"
+                        }],
+                        "toggleButton": [{
+                                "buttonName": "menuBtn",
+                                "icons": [{
+                                        "whenMenuIsCollapsed": "icons/align-justify.svg",
+                                        "whenMenuIsExpanded": "icons/chevron-left.svg"
+                                }]
+                        }],
+                        "menuTransitionAnimation": [{
+                                "animationDuration": 500,
+                                "animationEasingCurve": "Linear"
+                        }]
+                },
+                {
+                              "name": "centerMenuContainer",
+                              "defaultSize": [{
+                                      "width": 0,
+                                      "height": "parent"
+                              }],
+                              "collapsedSize": [{
+                                      "width": 0,
+                                      "height": "parent"
+                              }],
+                              "expandedSize": [{
+                                      "width": 200,
+                                      "height": "parent"
+                              }],
+                              "menuTransitionAnimation": [{
+                                      "animationDuration": 500,
+                                      "animationEasingCurve": "Linear"
+                              }]
+                      }
+        ],
+        "QStackedWidget":[
+              {
+                  "name":"mainContentsWidget",
+                  "navigation":[
+                      {
+                          "navigationButtons":[
+                              {
+                                  "homeBtn": "mainPage1",
+                                  "dataBtn": "mainPage2"
+                              }
+                          ]
+                      }
+                  ]
+              },
+              {
+                  "name":"sideBarWidget",
+                  "navigation":[
+                      {
+                          "navigationButtons":[
+                              {
+                                  "settingsBtn": "sideBarPage1",
+                                  "infoBtn": "sideBarPage2"
+                              }
+                          ]
+                      }
+                  ]
+              }
+        ],
+        "QPushButtonGroup": [
+              {
+                    "Buttons": [
+                        "homeBtn",
+                        "dataBtn"
+                    ],
+                    "Style":[{
+                        "Active": "background-color: #1f232a;",
+                        "NotActive": ""
+                    }]
+              },
+              {
+                        "Buttons": [
+                            "settingsBtn",
+                            "infoBtn"
+                        ],
+                        "Style":[{
+                            "Active": "background-color: #2c313c;",
+                            "NotActive": ""
+                        }]
+              },
+              {
+                        "Buttons": [
+                            "openBtn"
+                        ],
+                        "Style":[{
+                            "Active": "background-color: #1f232a;",
+                            "NotActive": ""
+                        }]
+              }
+        ]
+}
