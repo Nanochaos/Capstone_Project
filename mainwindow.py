@@ -332,6 +332,8 @@ class DataTransfer:
         self.prev_frame = 0
         self.average_ms = 1
         self.display = ''
+        self.output = ''
+        self.once = False
 
     def detection_data(self, im0s, det, save_dir, p, video_state, webcam, frame):
         self.im0s = im0s
@@ -355,6 +357,10 @@ class DataTransfer:
 
     def heatmap_dataset(self, display):
         self.display = display
+
+    def heatmap_zeros(self, output, once):
+        self.output = output
+        self.once = once
 
 
 if __name__ == "__main__":
