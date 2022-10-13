@@ -1418,7 +1418,7 @@ class Ui_MainWindow(object):
         self.labelsCheckBox.setText(QCoreApplication.translate("MainWindow", u"Hide Labels", None))
         self.confidenceCheckBox.setText(QCoreApplication.translate("MainWindow", u"Hide Confidence", None))
         self.overlapCheckBox.setText(QCoreApplication.translate("MainWindow", u"Overlap Heatmap", None))
-        self.cudaCheckBox.setText(QCoreApplication.translate("MainWindow", u"CUDA Quick Process", None))
+        self.cudaCheckBox.setText(QCoreApplication.translate("MainWindow", u"CUDA Video Quick Process", None))
         self.informationText.setText(QCoreApplication.translate("MainWindow", u"Information", None))
         self.icon.setText("")
         self.thermografi.setText(QCoreApplication.translate("MainWindow", u"Thermografi", None))
