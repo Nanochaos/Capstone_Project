@@ -555,7 +555,7 @@ class Ui_MainWindow(object):
         self.frame_19.setFrameShape(QFrame.StyledPanel)
         self.frame_19.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_13 = QHBoxLayout(self.frame_19)
-        self.horizontalLayout_13.setSpacing(0)
+        self.horizontalLayout_13.setSpacing(7)
         self.horizontalLayout_13.setObjectName(u"horizontalLayout_13")
         self.horizontalLayout_13.setContentsMargins(0, 0, 0, 0)
         self.maxDetectionsCheckBox = QCheckBox(self.frame_19)
@@ -596,7 +596,7 @@ class Ui_MainWindow(object):
 "	background-color: gray\n"
 "}")
 
-        self.horizontalLayout_13.addWidget(self.maxDetectionsInput)
+        self.horizontalLayout_13.addWidget(self.maxDetectionsInput, 0, Qt.AlignLeft)
 
 
         self.verticalLayout_18.addWidget(self.frame_19)
