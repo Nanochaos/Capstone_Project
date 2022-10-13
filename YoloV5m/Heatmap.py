@@ -99,6 +99,7 @@ class Heatmap(QObject):
     def matrix_addition(self, start, end):
         if not self.multithreading:
             self.data = {}
+            self.object_main.ui.overallHeatmapOutput.setPixmap(QPixmap(""))
 
         with open(self.source) as f:
             x = f.readlines()[(start - 1): end]

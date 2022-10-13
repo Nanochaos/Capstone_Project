@@ -277,7 +277,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_5.setContentsMargins(0, 0, 0, 0)
         self.centerMenuSubContainer = QWidget(self.centerMenuContainer)
         self.centerMenuSubContainer.setObjectName(u"centerMenuSubContainer")
-        self.centerMenuSubContainer.setMinimumSize(QSize(200, 0))
+        self.centerMenuSubContainer.setMinimumSize(QSize(250, 0))
         self.verticalLayout_6 = QVBoxLayout(self.centerMenuSubContainer)
         self.verticalLayout_6.setObjectName(u"verticalLayout_6")
         self.frame_4 = QFrame(self.centerMenuSubContainer)
