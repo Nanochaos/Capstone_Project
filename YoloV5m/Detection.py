@@ -120,6 +120,7 @@ class Detection(QObject):
         dt, seen = [0.0, 0.0, 0.0], 0
 
         for path, im, im0s, vid_cap, s in dataset:
+            process_time = time_sync()
             t1 = time_sync()
             im = torch.from_numpy(im).to(self.device)
             im = im.half() if model.fp16 else im.float()  # uint8 to fp16/32
@@ -207,7 +208,7 @@ class Detection(QObject):
 
             # For displaying the bbox AI detection
             self.im0 = im0
-            self.Display.change_output_image(object_main, im0, len(pred[0]), frame + 1, video_state)
+            self.Display.change_output_image(object_main, im0, len(pred[0]), frame + 1, video_state, process_time)
 
             # Pause, play and stop functionality
             self.Display.update_player_value(object_main)
@@ -246,13 +247,35 @@ class Output:
         super().__init__()
         self.break_value = object_main.break_value
         self.pause_loop = object_main.pause_loop
+        self.object_det = object_det
         self.local_image = ('', '')
-        object_main.ui.reloadBtn.clicked.connect(lambda: self.reload_display_image_event(object_main, object_det))
+        object_main.ui.reloadBtn.clicked.connect(lambda: self.reload_display_image_event(object_main, self.object_det))
+        self.once = False
 
-    def change_output_image(self, object_main, im0, human_count, frame, video_state):
+    def video_delay(self, process_time):
+        if not self.once:
+            video_fps = cv2.VideoCapture(self.object_det.source).get(cv2.CAP_PROP_FPS)
+        fps_time = (1000 / video_fps) / 100
+        t1 = time_sync()
+        t_process = t1 - process_time
+
+        # print("total: %f" % t_process)
+        # print("fps_time: %f" % fps_time)
+        # print("fps-total: %f" % (fps_time - t_process))
+        if t_process < fps_time:
+            while True:
+                t2 = time_sync()
+                if((t2 - t1) + t_process) >= fps_time:
+                    break
+            # print("time_sync: %f" % (t2 - t1))
+
+    def change_output_image(self, object_main, im0, human_count, frame, video_state, process_time):
         cv2.cvtColor(im0, cv2.COLOR_BGR2RGB, im0)
         self.local_image = QImage(im0.data, im0.shape[1], im0.shape[0], im0.shape[1] * im0.shape[2],
                                   QImage.Format_RGB888)
+
+        if video_state and not object_main.ui.cudaCheckBox.isChecked():
+            self.video_delay(process_time)
 
         # Displays the cv2 image to the GUI
         self.display_image_event(object_main)

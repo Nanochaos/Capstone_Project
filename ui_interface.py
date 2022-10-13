@@ -10,7 +10,7 @@
 
 from PySide2.QtCore import (QCoreApplication, QMetaObject, QSize, Qt)
 from PySide2.QtGui import (QFont, QIcon)
-from PySide2.QtWidgets import (QCheckBox, QComboBox, QFrame, QHBoxLayout, QLabel, QLineEdit, QStyle, QStyleOptionSlider,
+from PySide2.QtWidgets import (QCheckBox, QComboBox, QFrame, QHBoxLayout, QLabel, QLineEdit,QStyle, QStyleOptionSlider,
                                QPushButton, QSizePolicy, QSlider, QSpacerItem, QSpinBox, QStackedWidget, QVBoxLayout,
                                QWidget)
 
@@ -308,13 +308,14 @@ class Ui_MainWindow(object):
         self.horizontalLayout_3.addWidget(self.sideBarCloseBtn, 0, Qt.AlignRight)
 
 
-        self.verticalLayout_6.addWidget(self.frame_4, 0, Qt.AlignTop)
+        self.verticalLayout_6.addWidget(self.frame_4)
 
         self.sideBarWidget = QCustomStackedWidget(self.centerMenuSubContainer)
         self.sideBarWidget.setObjectName(u"sideBarWidget")
         self.sideBarPage1 = QWidget()
         self.sideBarPage1.setObjectName(u"sideBarPage1")
         self.verticalLayout_18 = QVBoxLayout(self.sideBarPage1)
+        self.verticalLayout_18.setSpacing(10)
         self.verticalLayout_18.setObjectName(u"verticalLayout_18")
         self.verticalLayout_18.setContentsMargins(0, 0, 0, 0)
         self.verticalSpacer_3 = QSpacerItem(20, 20, QSizePolicy.Minimum, QSizePolicy.Expanding)
@@ -675,6 +676,31 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_18.addWidget(self.overlapCheckBox)
 
+        self.cudaCheckBox = QCheckBox(self.sideBarPage1)
+        self.cudaCheckBox.setObjectName(u"cudaCheckBox")
+        self.cudaCheckBox.setFont(font2)
+        self.cudaCheckBox.setStyleSheet(u"QCheckBox {\n"
+"    spacing: 10px;\n"
+"}\n"
+"\n"
+"QCheckBox::indicator {\n"
+"    width: 14px;\n"
+"    height: 14px;\n"
+"	border: 1px solid white;\n"
+"	background-color: rgb(51, 51, 51);\n"
+"	\n"
+"}\n"
+"\n"
+"QCheckBox::indicator:checked {\n"
+"	width: 14px;\n"
+"    height: 14px;\n"
+"	border: 1px solid rgb(51, 51, 51);\n"
+"    background-color: rgb(150, 150, 150);\n"
+"}\n"
+"")
+
+        self.verticalLayout_18.addWidget(self.cudaCheckBox)
+
         self.verticalSpacer_4 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
         self.verticalLayout_18.addItem(self.verticalSpacer_4)
@@ -684,12 +710,13 @@ class Ui_MainWindow(object):
         self.sideBarPage2.setObjectName(u"sideBarPage2")
         self.verticalLayout_8 = QVBoxLayout(self.sideBarPage2)
         self.verticalLayout_8.setObjectName(u"verticalLayout_8")
-        self.label_3 = QLabel(self.sideBarPage2)
-        self.label_3.setObjectName(u"label_3")
-        self.label_3.setFont(font1)
-        self.label_3.setAlignment(Qt.AlignLeft|Qt.AlignTop)
+        self.informationText = QLabel(self.sideBarPage2)
+        self.informationText.setObjectName(u"informationText")
+        self.informationText.setFont(font1)
+        self.informationText.setAlignment(Qt.AlignLeading|Qt.AlignLeft|Qt.AlignTop)
+        self.informationText.setWordWrap(False)
 
-        self.verticalLayout_8.addWidget(self.label_3)
+        self.verticalLayout_8.addWidget(self.informationText)
 
         self.sideBarWidget.addWidget(self.sideBarPage2)
 
@@ -1329,7 +1356,7 @@ class Ui_MainWindow(object):
 
         self.sideBarWidget.setCurrentIndex(0)
         self.heatmapCombo.setCurrentIndex(-1)
-        self.mainContentsWidget.setCurrentIndex(2)
+        self.mainContentsWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -1391,7 +1418,8 @@ class Ui_MainWindow(object):
         self.labelsCheckBox.setText(QCoreApplication.translate("MainWindow", u"Hide Labels", None))
         self.confidenceCheckBox.setText(QCoreApplication.translate("MainWindow", u"Hide Confidence", None))
         self.overlapCheckBox.setText(QCoreApplication.translate("MainWindow", u"Overlap Heatmap", None))
-        self.label_3.setText(QCoreApplication.translate("MainWindow", u"Information", None))
+        self.cudaCheckBox.setText(QCoreApplication.translate("MainWindow", u"CUDA Quick Process", None))
+        self.informationText.setText(QCoreApplication.translate("MainWindow", u"Information", None))
         self.icon.setText("")
         self.thermografi.setText(QCoreApplication.translate("MainWindow", u"Thermografi", None))
         self.playBtn.setText("")
@@ -1453,4 +1481,3 @@ class Slider(QSlider):
 
     def change_event_return(self):
         return self.change_event
-

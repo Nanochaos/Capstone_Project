@@ -592,7 +592,7 @@
           </size>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_6">
-          <item alignment="Qt::AlignTop">
+          <item>
            <widget class="QFrame" name="frame_4">
             <property name="frameShape">
              <enum>QFrame::StyledPanel</enum>
@@ -657,10 +657,13 @@
           <item>
            <widget class="QCustomStackedWidget" name="sideBarWidget">
             <property name="currentIndex">
-             <number>1</number>
+             <number>0</number>
             </property>
             <widget class="QWidget" name="sideBarPage1">
              <layout class="QVBoxLayout" name="verticalLayout_18">
+              <property name="spacing">
+               <number>5</number>
+              </property>
               <property name="leftMargin">
                <number>0</number>
               </property>
@@ -1399,6 +1402,39 @@ QCheckBox::indicator:checked {
                </widget>
               </item>
               <item>
+               <widget class="QCheckBox" name="cudaCheckBox">
+                <property name="font">
+                 <font>
+                  <pointsize>12</pointsize>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QCheckBox {
+    spacing: 10px;
+}
+
+QCheckBox::indicator {
+    width: 14px;
+    height: 14px;
+	border: 1px solid white;
+	background-color: rgb(51, 51, 51);
+	
+}
+
+QCheckBox::indicator:checked {
+	width: 14px;
+    height: 14px;
+	border: 1px solid rgb(51, 51, 51);
+    background-color: rgb(150, 150, 150);
+}
+</string>
+                </property>
+                <property name="text">
+                 <string>CUDA Quick Process</string>
+                </property>
+               </widget>
+              </item>
+              <item>
                <spacer name="verticalSpacer_4">
                 <property name="orientation">
                  <enum>Qt::Vertical</enum>
@@ -1775,7 +1811,7 @@ QCheckBox::indicator:checked {
 border-bottom-right-radius: 10px</string>
             </property>
             <property name="currentIndex">
-             <number>1</number>
+             <number>0</number>
             </property>
             <widget class="QWidget" name="loginPage">
              <layout class="QVBoxLayout" name="verticalLayout_22">
