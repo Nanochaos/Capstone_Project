@@ -91,19 +91,18 @@ class Detection(QObject):
             if torch.cuda.is_available() and torch.cuda.get_device_name(0) not in bad_GPU:
                 print('CUDA 0')
                 self.device = '0'
-                self.device = select_device(self.device)
-            elif torch.cuda.is_available() and torch.cuda.get_device_name(1) not in bad_GPU:
-                print('CUDA 1')
-                self.device = '1'
-                self.device = select_device(self.device)
-            else:
+            try:
+                if torch.cuda.is_available() and torch.cuda.get_device_name(1) not in bad_GPU:
+                    print('CUDA 1')
+                    self.device = '1'
+            except AssertionError:
                 print('CPU')
                 self.device = 'cpu'
-                self.device = select_device(self.device)
         except AssertionError:
             print('CPU')
             self.device = 'cpu'
-            self.device = select_device(self.device)
+
+        self.device = select_device(self.device)
 
         model = DetectMultiBackend(self.weights, device=self.device, dnn=self.dnn, data=self.data, fp16=self.half)
         stride, names, pt = model.stride, model.names, model.pt
