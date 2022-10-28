@@ -267,14 +267,7 @@ class Output:
         # print("fps_time: %f" % fps_time)
         # print("fps-total: %f" % (fps_time - t_process))
         if t_process < fps_time:
-            cv2.waitKey((fps_time-t_process)*100)
-            """
-            while True:
-                t2 = time_sync()
-                if((t2 - t1) + t_process) >= fps_time:
-                    break
-            # print("time_sync: %f" % (t2 - t1))
-            """
+            cv2.waitKey(int((fps_time-t_process)*100))
 
     def change_output_image(self, object_main, im0, human_count, frame, video_state, process_time):
         cv2.cvtColor(im0, cv2.COLOR_BGR2RGB, im0)
