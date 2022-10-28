@@ -88,16 +88,16 @@ class Detection(QObject):
         # Load model
         bad_GPU = ['NVIDIA GeForce GTX 1050 Ti', 'NVIDIA GeForce GTX 1050', 'GeForce GTX 1050 Ti', 'GeForce GTX 1050']
         try:
-            if torch.cuda.is_available() and torch.cuda.get_device_name(0) not in bad_GPU:
-                print('CUDA 0')
-                self.device = '0'
             try:
+                if torch.cuda.is_available() and torch.cuda.get_device_name(0) not in bad_GPU:
+                    print('CUDA 0')
+                    self.device = '0'
+                    self.device = select_device(self.device)
+            except AssertionError:
                 if torch.cuda.is_available() and torch.cuda.get_device_name(1) not in bad_GPU:
                     print('CUDA 1')
                     self.device = '1'
-            except AssertionError:
-                print('CPU')
-                self.device = 'cpu'
+                    self.device = select_device(self.device)
         except AssertionError:
             print('CPU')
             self.device = 'cpu'

@@ -224,7 +224,7 @@ class MainWindow(QMainWindow):
 
     def get_file(self):
         self.ui.outputImage.setPixmap(QPixmap(""))
-        self.fname = QFileDialog.getOpenFileName(self, 'Open file', 'c:\\')
+        self.fname = QFileDialog.getOpenFileName(self, 'Open file', 'c:/')
         self.ui.openBtn.setStyleSheet("background-color: #16191d;")
 
     def timer_heatmap_page(self):
