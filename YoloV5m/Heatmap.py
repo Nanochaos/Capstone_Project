@@ -117,14 +117,13 @@ class Heatmap(QObject):
                     self.data[temp['frame']] = temp  # Applicable for both decoded and non-decoded self.data var
                     self.data[temp['frame']]['data']['matrix'] = \
                         loads(decompress(b64decode(self.data[temp['frame']]['data']['matrix'])))  # Applicable only for decoded self.data var
-
         if not self.object_main.DataTransfer.once:
             output = zeros(array(self.data[1]['data']['matrix']).shape)  # Applicable only for decoded self.data var
             self.object_main.DataTransfer.heatmap_zeros(output, True)
         else:
-            output = self.object_main.DataTransfer.output
+            output = zeros(array(self.object_main.DataTransfer.output).shape)
 
-        # output = zeros(array(loads(decompress(b64decode(self.data[start]['data']['matrix'])))).shape)
+        # output = zeros(array(self.object_main.DataTransfer.output).shape)
         text_status = "Overall Heatmap"
         human_count = 0
         for i in range(start, end + 1):
