@@ -87,6 +87,7 @@ class Detection(QObject):
 
         # Load model
         bad_GPU = ['NVIDIA GeForce GTX 1050 Ti', 'NVIDIA GeForce GTX 1050', 'GeForce GTX 1050 Ti', 'GeForce GTX 1050']
+
         try:
             try:
                 if torch.cuda.is_available() and torch.cuda.get_device_name(0) not in bad_GPU:
