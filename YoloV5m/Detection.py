@@ -322,11 +322,11 @@ class Output:
     def display_image_event(self, object_main):
         if self.local_image == '':
             return
+        cv2.waitKey(1)
         object_main.ui.outputImage.setPixmap(QPixmap.fromImage(self.local_image.scaled(
             object_main.ui.outputImage.size(), Qt.KeepAspectRatio)))
 
     def reload_display_image_event(self, object_main, object_det):
-        cv2.waitKey(1)
         self.local_image = QImage(object_det.im0.data, object_det.im0.shape[1], object_det.im0.shape[0],
                                   object_det.im0.shape[1] * object_det.im0.shape[2], QImage.Format_RGB888)
         self.display_image_event(object_main)
