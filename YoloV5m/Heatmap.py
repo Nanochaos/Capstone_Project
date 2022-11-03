@@ -232,6 +232,13 @@ class Heatmap(QObject):
         self.object_main.change_text_time(self.object_main.DataTransfer.camera_frame, self.object_main.ui.totalTime)
 
     def reload_display_heatmap(self, display):
+        try:
+            if not display:
+                return
+        except ValueError:
+            if not display.data:
+                return
+
         qim = QImage(display.data, display.shape[1], display.shape[0], display.shape[1] * display.shape[2],
                      QImage.Format_RGB888)
         self.display_heatmap(qim)
