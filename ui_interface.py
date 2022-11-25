@@ -1419,7 +1419,15 @@ class Ui_MainWindow(object):
         self.confidenceCheckBox.setText(QCoreApplication.translate("MainWindow", u"Hide Confidence", None))
         self.overlapCheckBox.setText(QCoreApplication.translate("MainWindow", u"Overlap Heatmap", None))
         self.cudaCheckBox.setText(QCoreApplication.translate("MainWindow", u"CUDA Video Quick Process", None))
-        self.informationText.setText(QCoreApplication.translate("MainWindow", u"Information", None))
+        self.informationText.setText(QCoreApplication.translate("MainWindow", u"Made by Thermografi\n\n"
+                                                                              u"Capstone Adviser:\n"
+                                                                              u"Dr. Renann G. Baldovino\n\n"
+                                                                              u"Members:\n"
+                                                                              u"Kristian Laurel\n"
+                                                                              u"Leander Roque\n"
+                                                                              u"Jason Fortit\n"
+                                                                              u"Arielle Gutierrez\n"
+                                                                              u"Patrick Sia", None))
         self.icon.setText("")
         self.thermografi.setText(QCoreApplication.translate("MainWindow", u"Thermografi", None))
         self.playBtn.setText("")
