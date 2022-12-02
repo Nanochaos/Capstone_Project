@@ -1,5 +1,3 @@
-import sys
-
 from PySide2.QtCore import QObject, Qt, QTimer
 from json import loads
 from zlib import decompress
@@ -128,7 +126,7 @@ class Heatmap(QObject):
         human_count = 0
         for i in range(start, end + 1):
             try:
-                output += self.data[i]['data']['matrix']  # Applicable only for decoded self.data var
+                output += self.data[i]['data']['matrix'] # Applicable only for decoded self.data var
                 # output += loads(decompress(b64decode(self.data[i]['data']['matrix'])))
                 if self.data[i]['data']['detections'] > human_count:
                     human_count = self.data[i]['data']['detections']
@@ -205,7 +203,7 @@ class Heatmap(QObject):
         display_hp = None
         display_hp = cv2.normalize(output, display_hp, alpha=0, beta=255, norm_type=cv2.NORM_MINMAX, dtype=cv2.CV_8U)
         display_hp = cv2.LUT(cv2.cvtColor(display_hp, cv2.COLOR_BGR2RGB), self.color_map_cv2).astype(uint8)
-        display_image = cv2.addWeighted(display_hp, 0.3, cv2.cvtColor(self.im0s, cv2.COLOR_BGR2RGB), 0.7, 0.0)
+        display_image = cv2.addWeighted(display_hp, 1, cv2.cvtColor(self.im0s, cv2.COLOR_BGR2RGB), 0.25, 0.0)
         display = display_image
 
         if self.object_main.ui.overlapCheckBox.isChecked():
