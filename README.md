@@ -9,7 +9,7 @@ Capstone Adviser:
 Dr. Renann Baldovino
 
 Members:
-Kristian Elijah Laurel
+Kristian Elijah Laurel \n
 
 Jason Daniel Fortit
 
