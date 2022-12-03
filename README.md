@@ -10,7 +10,11 @@ Dr. Renann Baldovino
 
 Members:
 Kristian Elijah Laurel
+
 Jason Daniel Fortit
+
 Michael Leander Roque
+
 Arielle Neena Gutierrez
+
 Patrick Daniel Sia
